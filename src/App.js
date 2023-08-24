@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import { useRef } from 'react';
 import './App.css';
+import {Context} from './Context';
+import List from './page/List';
+import Write from './page/Write';
 
 function App() {
+  let wrup = useRef();
+  let popup = (e)=>{
+    e.preventDefault();
+    wrup.current.classList.toggle('active');
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Context>
+      <span onClick={popup}>+</span> 
+      <List />
+      <Write wrup={wrup}/>
+    </Context>
   );
 }
 
